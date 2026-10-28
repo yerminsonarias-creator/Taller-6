@@ -1,0 +1,412 @@
+/* ==========================================================================
+   1. VARIABLES
+   ========================================================================== */
+:root {
+  /* Colores base */
+  --color-blanco: #ffffff;
+  --color-fondo: #f5f6f8;
+  --color-fondo-imagen: #f0f0f0;
+  --color-oscuro: #1a202c;
+  --color-oscuro-hover: #2d3748;
+  --color-acento: #f6ad55;
+
+  /* Colores de texto */
+  --color-texto: var(--color-oscuro);
+  --color-texto-suave: #718096;
+  --color-texto-secundario: #4a5568;
+  --color-texto-sobre-oscuro: #e2e8f0;
+  --color-calificacion: #b7791f;
+  --color-error: #c53030;
+
+  /* Bordes */
+  --color-borde: #e2e8f0;
+  --color-borde-campo: #cbd5e0;
+
+  /* Sombras */
+  --sombra-tarjeta: 0 1px 4px rgba(26, 32, 44, 0.12);
+  --sombra-tarjeta-hover: 0 6px 14px rgba(26, 32, 44, 0.16);
+
+  /* Medidas */
+  --ancho-maximo: 1150px;
+}
+
+
+/* ==========================================================================
+   2. BASE
+   ========================================================================== */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Segoe UI", Arial, Helvetica, sans-serif;
+  background-color: var(--color-fondo);
+  color: var(--color-texto);
+  min-height: 100vh;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+
+/* ==========================================================================
+   3. ESTRUCTURA COMÚN A LAS DOS PÁGINAS
+   ========================================================================== */
+
+/* Encabezado */
+.encabezado {
+  background-color: var(--color-oscuro);
+  color: var(--color-blanco);
+  padding: 40px 24px 36px;
+}
+
+.encabezado__contenido {
+  max-width: var(--ancho-maximo);
+  margin: 0 auto;
+}
+
+.encabezado__etiqueta {
+  display: block;
+  color: var(--color-acento);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+
+.encabezado__titulo {
+  font-size: 38px;
+  font-weight: 700;
+  line-height: 1.15;
+}
+
+.encabezado__subtitulo {
+  margin-top: 8px;
+  font-size: 14px;
+  color: var(--color-texto-sobre-oscuro);
+}
+
+/* Contenido principal */
+.contenedor {
+  max-width: var(--ancho-maximo);
+  margin: 0 auto;
+  padding: 32px 24px 48px;
+}
+
+/* Mensaje de estado (cargando / error) */
+.estado {
+  text-align: center;
+  color: var(--color-texto-suave);
+  font-size: 15px;
+  padding: 24px 0;
+}
+
+.estado:empty {
+  display: none;
+}
+
+.estado--error {
+  color: var(--color-error);
+}
+
+/* Imagen y categoría: se ven igual en la tarjeta y en el detalle.
+   Lo propio de cada uno (tamaño, márgenes) se define en su sección. */
+.tarjeta__imagen,
+.detalle__imagen {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--color-fondo-imagen);
+}
+
+.tarjeta__categoria,
+.detalle__categoria {
+  font-size: 11px;
+  color: var(--color-texto-suave);
+  text-transform: uppercase;
+}
+
+
+/* ==========================================================================
+   4. PÁGINA DEL CATÁLOGO (index.html)
+   ========================================================================== */
+
+/* Barra con el título y el buscador */
+.barra-superior {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 32px;
+}
+
+.barra-superior__titulo {
+  font-size: 22px;
+  font-weight: 700;
+}
+
+.buscador {
+  width: 320px;
+  max-width: 100%;
+  height: 42px;
+  padding: 0 14px;
+  font-size: 13px;
+  font-family: inherit;
+  color: var(--color-texto);
+  background-color: var(--color-blanco);
+  border: 1px solid var(--color-borde-campo);
+  border-radius: 6px;
+  outline: none;
+}
+
+.buscador:focus {
+  border-color: var(--color-oscuro);
+}
+
+/* Cuadrícula de productos */
+.cuadricula {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+}
+
+/* Tarjeta de producto */
+.tarjeta {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--color-blanco);
+  border-radius: 10px;
+  box-shadow: var(--sombra-tarjeta);
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.tarjeta:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--sombra-tarjeta-hover);
+}
+
+.tarjeta__imagen {
+  height: 210px;
+}
+
+.tarjeta__imagen img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.tarjeta__cuerpo {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  padding: 16px 18px 18px;
+}
+
+.tarjeta__categoria {
+  margin-bottom: 12px;
+}
+
+.tarjeta__nombre {
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1.35;
+  min-height: 2.7em; /* reserva 2 líneas para que las tarjetas queden alineadas */
+  margin-bottom: 10px;
+}
+
+.tarjeta__fila {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.tarjeta__precio {
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.tarjeta__calificacion {
+  font-size: 12px;
+  color: var(--color-calificacion);
+}
+
+.tarjeta__stock {
+  font-size: 12px;
+  color: var(--color-texto-suave);
+  margin-bottom: 14px;
+}
+
+.boton {
+  display: block;
+  margin-top: auto;
+  width: 100%;
+  padding: 11px 0;
+  text-align: center;
+  text-decoration: none;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--color-blanco);
+  background-color: var(--color-oscuro);
+  border-radius: 6px;
+}
+
+.boton:hover {
+  background-color: var(--color-oscuro-hover);
+}
+
+
+/* ==========================================================================
+   5. PÁGINA DE DETALLE (producto.html)
+   ========================================================================== */
+.enlace-volver {
+  display: inline-block;
+  margin-bottom: 14px;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--color-texto);
+  text-decoration: none;
+}
+
+.enlace-volver:hover {
+  text-decoration: underline;
+}
+
+.detalle {
+  display: grid;
+  grid-template-columns: 45fr 55fr;
+  background-color: var(--color-blanco);
+  border: 1px solid var(--color-borde);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+/* "display: grid" anula el atributo hidden, por eso se refuerza aquí */
+.detalle[hidden] {
+  display: none;
+}
+
+.detalle__imagen {
+  min-height: 500px;
+  padding: 24px;
+}
+
+.detalle__imagen img {
+  width: 100%;
+  max-height: 460px;
+  object-fit: contain;
+}
+
+.detalle__info {
+  padding: 48px 45px;
+}
+
+.detalle__categoria {
+  display: block;
+  margin-bottom: 8px;
+}
+
+.detalle__nombre {
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 14px;
+}
+
+.detalle__precio {
+  font-size: 30px;
+  font-weight: 700;
+  margin-bottom: 14px;
+}
+
+.detalle__descripcion {
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--color-texto-secundario);
+  margin-bottom: 20px;
+}
+
+/* Cuadros de datos (calificación, stock, marca, descuento) */
+.lista-datos {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.dato {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  padding: 12px 16px;
+  background-color: var(--color-fondo);
+  border-radius: 8px;
+}
+
+.dato__etiqueta {
+  font-size: 13px;
+  color: var(--color-texto-suave);
+}
+
+.dato__valor {
+  font-size: 13px;
+  font-weight: 700;
+}
+
+
+/* ==========================================================================
+   6. RESPONSIVE
+   ========================================================================== */
+@media (max-width: 1000px) {
+  .cuadricula {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 760px) {
+  .encabezado__titulo {
+    font-size: 30px;
+  }
+
+  .cuadricula {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+
+  .detalle {
+    grid-template-columns: 1fr;
+  }
+
+  .detalle__imagen {
+    min-height: 320px;
+  }
+
+  .detalle__info {
+    padding: 28px 24px;
+  }
+
+  .detalle__nombre {
+    font-size: 26px;
+  }
+}
+
+@media (max-width: 480px) {
+  .cuadricula {
+    grid-template-columns: 1fr;
+  }
+
+  .lista-datos {
+    grid-template-columns: 1fr;
+  }
+
+  .buscador {
+    width: 100%;
+  }
+}

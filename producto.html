@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Detalle del producto</title>
+  <meta name="author" content="Yerminson">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+
+  <header class="encabezado">
+    <div class="encabezado__contenido">
+      <span class="encabezado__etiqueta">SHOP API</span>
+      <h1 class="encabezado__titulo">Detalle del producto</h1>
+    </div>
+  </header>
+
+  <main class="contenedor">
+
+    <a class="enlace-volver" href="index.html">← Volver al catálogo</a>
+
+    <p id="mensaje-estado" class="estado" role="status" aria-live="polite"></p>
+
+    <section id="panel-detalle" class="detalle" hidden>
+
+      <div class="detalle__imagen">
+        <img id="producto-imagen" src="" alt="">
+      </div>
+
+      <div class="detalle__info">
+        <span id="producto-categoria" class="detalle__categoria"></span>
+        <h2 id="producto-nombre" class="detalle__nombre"></h2>
+        <p id="producto-precio" class="detalle__precio"></p>
+        <p id="producto-descripcion" class="detalle__descripcion"></p>
+
+        <div class="lista-datos">
+          <div class="dato">
+            <span class="dato__etiqueta">Calificación</span>
+            <span id="producto-calificacion" class="dato__valor"></span>
+          </div>
+          <div class="dato">
+            <span class="dato__etiqueta">Stock</span>
+            <span id="producto-stock" class="dato__valor"></span>
+          </div>
+          <div class="dato">
+            <span class="dato__etiqueta">Marca</span>
+            <span id="producto-marca" class="dato__valor"></span>
+          </div>
+          <div class="dato">
+            <span class="dato__etiqueta">Descuento</span>
+            <span id="producto-descuento" class="dato__valor"></span>
+          </div>
+        </div>
+      </div>
+
+    </section>
+  </main>
+
+  <script src="js/producto.js"></script>
+</body>
+
+</html>

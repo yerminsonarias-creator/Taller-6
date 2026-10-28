@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Catálogo de Productos</title>
+  <meta name="author" content="Yerminson ">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+
+  <header class="encabezado">
+    <div class="encabezado__contenido">
+      <span class="encabezado__etiqueta">SHOP API</span>
+      <h1 class="encabezado__titulo">Catálogo de productos</h1>
+      <p class="encabezado__subtitulo">Selecciona un producto para consultar su información.</p>
+    </div>
+  </header>
+
+  <main class="contenedor">
+
+    <section class="barra-superior">
+      <h2 class="barra-superior__titulo">Productos disponibles</h2>
+      <input type="search" id="campo-busqueda" class="buscador" placeholder="Buscar producto..." aria-label="Buscar producto"
+        autocomplete="off">
+    </section>
+
+    <p id="mensaje-estado" class="estado" role="status" aria-live="polite"></p>
+
+    <section id="catalogo" class="cuadricula" aria-label="Lista de productos"></section>
+  </main>
+
+  <template id="plantilla-tarjeta">
+    <article class="tarjeta">
+      <div class="tarjeta__imagen">
+        <img src="" alt="" loading="lazy">
+      </div>
+      <div class="tarjeta__cuerpo">
+        <span class="tarjeta__categoria"></span>
+        <h3 class="tarjeta__nombre"></h3>
+        <div class="tarjeta__fila">
+          <span class="tarjeta__precio"></span>
+          <span class="tarjeta__calificacion"></span>
+        </div>
+        <span class="tarjeta__stock"></span>
+        <a class="boton" href="#">Ver producto</a>
+      </div>
+    </article>
+  </template>
+
+  <script src="js/index.js"></script>
+</body>
+
+</html>
